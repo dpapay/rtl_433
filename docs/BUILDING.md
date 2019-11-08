@@ -41,7 +41,7 @@ Mac OS X with MacPorts:
 
 Mac OS X with Homebrew:
 
-    brew install rtl-sdr cmake
+    brew install rtl-sdr cmake pkg-config
 
 ### CMake
 
@@ -53,6 +53,11 @@ Installation using CMake:
     cmake ..
     make
     make install
+
+Use CMake with `-DENABLE_SOAPYSDR=ON` (default: `AUTO`) to require SoapySDR, use `-DENABLE_RTLSDR=OFF` (default: `ON`) to disable RTL-SDR if needed.
+E.g. use:
+
+    cmake -DENABLE_SOAPYSDR=ON ..
 
 ### Autotools (Autoconf, Automake)
 

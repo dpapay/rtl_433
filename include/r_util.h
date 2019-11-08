@@ -35,19 +35,21 @@ void get_time_now(struct timeval *tv);
 
 /** Printable timestamp in local time.
 
+    @param buf[out]: output buffer, long enough for "YYYY-MM-DD HH:MM:SS"
+    @param format: time format string, uses "%Y-%m-%d %H:%M:%S" if NULL
     @param time_secs: 0 for now, or seconds since the epoch
-    @param buf: output buffer, long enough for "YYYY-MM-DD HH:MM:SS"
     @return buf pointer (for short hand use as operator)
 */
-char* local_time_str(time_t time_secs, char *buf);
+char *format_time_str(char *buf, char const *format, time_t time_secs);
 
 /** Printable timestamp in local time with microseconds.
 
+    @param buf[out]: output buffer, long enough for "YYYY-MM-DD HH:MM:SS.uuuuuu"
+    @param format: time format string without usec, uses "%Y-%m-%d %H:%M:%S" if NULL
     @param tv: NULL for now, or seconds and microseconds since the epoch
-    @param buf: output buffer, long enough for "YYYY-MM-DD HH:MM:SS"
     @return buf pointer (for short hand use as operator)
 */
-char *usecs_time_str(struct timeval *tv, char *buf);
+char *usecs_time_str(char *buf, char const *format, struct timeval *tv);
 
 /** Printable sample position.
 
@@ -139,7 +141,7 @@ float inhg2hpa(float inhg);
     @param suffix: the pattern to search
     @return true if the string ends with the specified suffix, false otherwise.
 */
-bool str_endswith(const char *restrict str, const char *restrict suffix);
+bool str_endswith(char const *restrict str, char const *restrict suffix);
 
 /** Replace a pattern in a string.
 
@@ -150,12 +152,12 @@ bool str_endswith(const char *restrict str, const char *restrict suffix);
     @param with: the replacement pattern
     @return a new string that has rep replaced with with
 */
-char *str_replace(char *orig, char *rep, char *with);
+char *str_replace(char const *orig, char const *rep, char const *with);
 
 /** Make a nice printable string for a frequency.
 
     @param freq: the frequency to convert to a string.
 */
-const char *nice_freq (double freq);
+char const *nice_freq (double freq);
 
 #endif /* INCLUDE_R_UTIL_H_ */
